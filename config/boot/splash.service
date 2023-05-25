@@ -1,0 +1,13 @@
+[Unit]
+Description=Splash screen
+DefaultDependencies=no
+After=local-fs.target
+
+[Service]
+#ExecStart=/usr/bin/omxplayer -b --aspect-mode fill /home/pi/printer_data/config/boot/Voron_Boot.mp4
+ExecStart=cvlc -q -f /home/pi/printer_data/config/boot/Voron_Boot.mp4 --no-video-title-show --play-and-exit 2> /dev/null
+StandardInput=tty
+StandardOutput=tty
+
+[Install]
+WantedBy=sysinit.target
