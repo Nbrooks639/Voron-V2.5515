@@ -1,0 +1,61 @@
+[homing_override]
+axes: xyz
+set_position_z: 0
+gcode:
+  #G90
+  #G0 Z5
+  {% if printer["gcode_macro _KNOMI"] != null %}
+    SET_GCODE_VARIABLE MACRO=_KNOMI VARIABLE=status VALUE='"homing"'
+  {% endif %}
+  {% set home_all = 'X' not in params and 'Y' not in params and 'Z' not in params %}
+  
+  {% set RUN_CURRENT_X = printer.configfile.settings['tmc2209 stepper_x'].run_current|float %}
+  {% set RUN_CURRENT_Y = printer.configfile.settings['tmc2209 stepper_y'].run_current|float %}
+  {% set HOME_CURRENT = 1.2 %}
+  {% if home_all or 'X' in params %}
+    SET_TMC_CURRENT STEPPER=stepper_x CURRENT={HOME_CURRENT}
+  {% endif %}
+  {% if home_all or 'Y' in params %}
+    SET_TMC_CURRENT STEPPER=stepper_y CURRENT={HOME_CURRENT}
+  {% endif %}
+  M400
+  {% if printer["gcode_macro _status_homing"] != null %}
+      _status_homing
+  {% endif %}
+
+
+  #{% if printer.toolhead.homed_axes != "xyz" %}
+    G90
+    G0 Z10
+  #{% endif %}
+
+  {% if home_all or 'X' in params %}
+    G28 X
+    G91
+    G1 X-3 F10000
+    G90
+    M400
+
+  {% endif %}
+  
+  {% if home_all or 'Y' in params %}
+    G28 Y
+  {% endif %}
+  
+  {% if home_all or 'Z' in params %}
+    G0 X{printer["print_setting print_area_x"].value/2} Y{printer["print_setting print_area_y"].value/2} F12000
+    G28 Z
+    G0 Z10
+  {% endif %}
+  {% if printer["gcode_macro _status_ready"] != null %}
+      _status_ready
+  {% endif %}
+  {% if home_all or 'X' in params %}
+    SET_TMC_CURRENT STEPPER=stepper_x CURRENT={RUN_CURRENT_X}
+  {% endif %}
+  {% if home_all or 'Y' in params %}
+    SET_TMC_CURRENT STEPPER=stepper_y CURRENT={RUN_CURRENT_Y}
+  {% endif %}  
+  {% if printer["gcode_macro _KNOMI"] != null %}
+    SET_GCODE_VARIABLE MACRO=_KNOMI VARIABLE=status VALUE='""'
+  {% endif %}
