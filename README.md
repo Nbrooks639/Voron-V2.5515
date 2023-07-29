@@ -1,5 +1,11 @@
-# V2-Purple-Orange-LDO
-Voron 2.4, 300 x 300, LDO Space gray frame, Orange/Purple, Canbus
+# V2.5515
+Voron 2.4, 300 x 300, LDO Space gray frame, Orange/Purple, Octopus Max EZ w/ 5160RGB drivers, Canbus-BTT SB EBB 2209/RP 2040, Knomi SB Display
+
+![363856722_2440760692770372_4647321092019636357_n](https://github.com/Nbrooks639/Voron-V2.5515/assets/100983669/3bf802e8-a5f8-44ba-a446-a3503b6ae97a)
+
+![363857884_1680409162472982_1060829333045094634_n](https://github.com/Nbrooks639/Voron-V2.5515/assets/100983669/bbeffedb-3113-40b0-a9f4-ea989fdef23c)
+
+![361948348_234994018873502_8382480590694910100_n](https://github.com/Nbrooks639/Voron-V2.5515/assets/100983669/390fe043-f62a-41bc-995f-3cea3ab0293c)
 
 ![343570430_787175589434804_5643593835896998620_n](https://user-images.githubusercontent.com/100983669/235328471-1d971bb8-b9ef-4c6a-b5f9-5a097da4bd3c.jpg)
 
